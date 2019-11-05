@@ -14,20 +14,21 @@
 @include('layout.nav-menu')
 <br>
 <div class="container">
-<div><h1>Adaptar Recint</h1></div>
+<div><h1>Adaptar Recinto</h1></div>
 <form action="{{route ('AdaptarRecinto')}}" method="post">
 {{csrf_field()}}
-  <div class="form-group">
+<div class="form-group">
     <label for="Recinto">Nombre</label>
-    <input type="text" id="recinto" name="recinto" value="{{$data->nombre}}">
+    <input type="text" class="form-control" id="recinto" name="recinto" value="{{$data->nombre}}">
   </div>
+  <input type="hidden" name="id_amb" value={{$data->id_amb}}>
   <div class="form-group">
     <label for="ubicacion">Ubicación</label>
     <input type="text" class="form-control" id="ubicacion" name="ubicacion" value="{{$data->ubicacion}}">
   </div>
   <div class="form-group">
   <label for="capacidad">Capacidad (Personas)</label>
-    <input class="form-control" id="capacidad" name="capacidad" type="number" value="{{$data->capacidad}}">
+    <input class="form-control" id="capacidad" name="capacidad" type="number" value = {{$data->capacidad}} >
   </div>
   <label for="descripcion">Descripción</label>
     <input class="form-control" id="descripcion" name="descripcion" type="text" value="{{$data->descripcion}}">
@@ -37,7 +38,7 @@
   <div class="col-4">
   </div>
   <div class="col-4">
-  <button type="submit" class="btn btn-success" style=" text-align: center;height:40px;width:200px;border-width: 0px;">Adaptar Ambientes</button>
+  <button type="submit" class="btn btn-success" style=" text-align: center;height:40px;width:200px;border-width: 0px;">Gestionar Ambientes</button>
   </div>
   </div>
   <br>

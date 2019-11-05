@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Ambiente;
 use Illuminate\Http\Request;
 
 class AmbienteController extends Controller
 {
-    public function GestionarAmbiente(){
-        $ambientes=[[1,'D101','50 personas','Primer piso Edificio',23],[2,'N407','30 personas','San Lazaro',15]];
-        return view('ambiente.GestionarAmbiente', ['ambientes'=>$ambientes]);
+    public function GestionarAmbiente(Request $request){
+        $ambientes=DB::table('ambientes')->select('id_amb','nombre','ubicacion','capacidad','descripcion')->where('Ambientesid_amb','=',$request->id_recinto)->get();
+        for($i=0;$i<sizeof($ambientes);$i=$i+1){
+            $ambientes[$i]->count=$i;
+        }
+        return view('ambiente.GestionarAmbiente', ['ambientes'=>$ambientes,'id_recinto'=>$request->id_recinto]);
     }
     public function CrearAmbientestore(Request $request){
         return (new AmbienteController)->GestionarAmbiente($request);

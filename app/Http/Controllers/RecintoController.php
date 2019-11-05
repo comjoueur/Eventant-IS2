@@ -18,20 +18,23 @@ class RecintoController extends Controller
         return view('recinto.GestionarRecinto', ['recintos'=>$recintos]);
     }
     public function CrearRecintostore(Request $request){
-        DB::table('ambientes')->insert(
+        $id_recin=DB::table('ambientes')->insertGetId(
             ['id_amb' => NULL, 'nombre' => $request->recinto , 'ubicacion' => $request->ubicacion , 'capacidad' => $request->capacidad, 'descripcion' => $request->descripcion, 'Ambientesid_amb' => NULL]
         );
-        $id_recin= DB::table('ambientes')->select('id_amb')->where('nombre','=',$request->nombre);
         $request->merge(['id_recinto' => $id_recin]);
         return (new AmbienteController)->GestionarAmbiente($request);
     }
     public function AdaptarRecintostore(Request $request){
-        DB::table('ambientes')->insert(
+        $id_recin=DB::table('ambientes')->insertGetId(
             ['id_amb' => NULL, 'nombre' => $request->recinto , 'ubicacion' => $request->ubicacion , 'capacidad' => $request->capacidad, 'descripcion' => $request->descripcion, 'Ambientesid_amb' => NULL]
         );
+        $id_recin= DB::table('ambientes')->select('id_amb')->where('nombre','=',$request->recinto)->get();
+        $request->merge(['id_recinto' => $id_recin]);
         return (new AmbienteController)->GestionarAmbiente($request);
     }
     public function ModificarRecintostore(Request $request){
+        DB::table('ambientes')->where('id_amb','=',$request->id_amb)->update(['nombre' => $request->recinto , 'ubicacion' => $request->ubicacion , 'capacidad' => $request->capacidad, 'descripcion' => $request->descripcion, 'Ambientesid_amb' => NULL]);
+        $request->merge(['id_recinto' => $request->id_amb]);
         return (new AmbienteController)->GestionarAmbiente($request);
     }
     public function CrearRecinto(Request $request){
@@ -40,7 +43,7 @@ class RecintoController extends Controller
     public function AdaptarRecinto(Request $request){
         $id=$request->recinto;
         $data=DB::table('ambientes')->select('id_amb','nombre','ubicacion','capacidad','descripcion')->where('id_amb','=',$id)->get();
-        return view('recinto.AdaptarRecinto',['data'=>$data[0],'nombre'=>$data[0]->nombre]);
+        return view('recinto.AdaptarRecinto',['data'=>$data[0]]);
     }
     public function ModificarRecinto(Request $request){
         $id=$request->recinto;

@@ -20,7 +20,7 @@
     <br>
     <h2>Gestionar Ambiente</h2>
     <br>
-
+    <input type="hidden" value={{$id_recinto} name="id_recinto"}>
     <table class="table">
   <thead>
     <tr>
@@ -28,17 +28,26 @@
       <th scope="col">#</th>
       <th scope="col" style="font-variant: all-small-caps;">Nombre</th>
       <th scope="col" style="font-variant: all-small-caps;">Capacidad</th>
+      <th scope="col" style="font-variant: all-small-caps;">Ubicación</th>
       <th scope="col" style="font-variant: all-small-caps;">Descripción</th>
     </tr>
   </thead>
   <tbody>
-    @foreach($ambientes as $ambientes)
+  @foreach($ambientes as $data)
       <tr>
-        <td><input type="radio" id="radios" name="ambiente" value="$ambientes[4]" /></td>
-        <th scope="row">{{$ambientes[0]}}</th>
-        <td>{{$ambientes[1]}}</td>
-        <td>{{$ambientes[2]}}</td>
-        <td>{{$ambientes[3]}}</td>
+      <?php
+        if($data->count==0){
+          echo '<td><input type="radio" id="radios" name="ambiente" value="'.$data->id_amb.'" checked></td>';
+        }
+        else{
+          echo '<td><input type="radio" id="radios" name="ambiente" value="'.$data->id_amb.'"></td>';
+        }
+        ?>
+        <th scope="row">{{$data->count+1}}</th>
+        <td>{{$data->nombre}}</td>
+        <td>{{$data->ubicacion}}</td>
+        <td>{{$data->capacidad}}</td>
+        <td>{{$data->descripcion}}</td>
       </tr>
    @endforeach
   </tbody>

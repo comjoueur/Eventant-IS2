@@ -15,18 +15,14 @@
 <br>
 <div class="container">
 <div><h1>Modificar Recinto</h1></div>
-<input value="hola">
-<input value="hola">
-<input value="hola">
-<input value="hola">
-<input value="hola">
-<input value="hola">
+
 <form action="{{route ('ModificarRecinto')}}" method="post">
 {{csrf_field()}}
 <div class="form-group">
     <label for="Recinto">Nombre</label>
-    <input type="text" id="recinto" name="recinto" value="{{$data->nombre}}">
+    <input type="text" class="form-control" id="recinto" name="recinto" value="{{$data->nombre}}">
   </div>
+  <input type="hidden" name="id_amb" value="{{$data->id_amb}}">
   <div class="form-group">
     <label for="ubicacion">Ubicación</label>
     <input type="text" class="form-control" id="ubicacion" name="ubicacion" value="{{$data->ubicacion}}">
@@ -43,7 +39,7 @@
   <div class="col-4">
   </div>
   <div class="col-4">
-  <button type="submit" class="btn btn-success" style=" text-align: center;height:40px;width:200px;border-width: 0px;">Adaptar Ambientes</button>
+  <button type="submit" class="btn btn-success" style=" text-align: center;height:40px;width:200px;border-width: 0px;">Gestionar Ambientes</button>
   </div>
   </div>
   <br>

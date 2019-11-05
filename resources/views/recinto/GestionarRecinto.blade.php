@@ -35,8 +35,15 @@
   <tbody>
     @foreach($recintos as $data)
       <tr>
-        <td><input type="radio" id="radios" name="recinto" value="{{$data->id_amb}}" ></td>
-        <th scope="row">{{$data->ubicacion}}</th>
+      <?php
+        if($data->count==0){
+          echo '<td><input type="radio" id="radios" name="recinto" value="'.$data->id_amb.'" checked></td>';
+        }
+        else{
+          echo '<td><input type="radio" id="radios" name="recinto" value="'.$data->id_amb.'"></td>';
+        }
+        ?>
+        <th scope="row">{{$data->count+1}}</th>
         <td>{{$data->nombre}}</td>
         <td>{{$data->ubicacion}}</td>
         <td>{{$data->capacidad}}</td>
