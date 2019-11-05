@@ -14,30 +14,29 @@
 @include('layout.nav-menu')
 <br>
 <div class="container">
-<div><h1>Crear Ambiente</h1></div>
-<form action="{{route ('CrearAmbiente')}}" method="post">
+<div><h1>Agregar Material</h1></div>
+<form action="{{route ('CrearMaterial')}}" method="post">
 {{csrf_field()}}
   <div class="form-group">
-    <label for="ambiente">Nombre</label>
-    <input type="text" class="form-control" id="ambiente" name="ambiente">
+  <label for="nombre">Nombre</label>
+    <input class="form-control" id="nombre" name="nombre">
   </div>
   <div class="form-group">
-    <label for="ubicacion">Ubicación</label>
-    <input type="text" class="form-control" id="ubicacion" name="ubicacion">
-  </div>
-  <div class="form-group">
-  <label for="Capacidad">Capacidad (Personas)</label>
-    <input class="form-control" id="capacidad" name="capacidad" type="number">
-  </div>
-  <label for="Capacidad">Descripción</label>
+  <label for="descripcion">Descripcion</label>
     <input class="form-control" id="descripcion" name="descripcion" type="text">
+  </div>
+  <div class="form-group">
+  <label for="cantidad">Cantidad</label>
+    <input class="form-control" id="cantidad" name="cantidad" type="email">
+  </div>
+  
   </div>
   <br>
   <div class="row">
   <div class="col-4">
   </div>
   <div class="col-4">
-  <button type="submit" class="btn btn-success" style=" text-align: center;height:40px;width:200px;border-width: 0px;">Crear Ambiente</button>
+  <button type="submit" class="btn btn-success" style=" text-align: center;height:40px;width:200px;border-width: 0px;">Agregar</button>
   </div>
   </div>
   <br>

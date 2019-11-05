@@ -15,8 +15,8 @@
 
 <div class="container">
   <br>
-  <h2>Personal del evento {{$evento}}</h2>
-  <form  action="{{route ('OpcionPersonal')}}" method="post" >
+  <h2>Paquetes del evento {{$evento}}</h2>
+  <form  action="{{route ('OpcionPaquete')}}" method="post" >
     {{csrf_field()}}
 
     <table class="table">
@@ -24,21 +24,23 @@
     <tr>
     <th scope="col" style="font-variant: all-small-caps;"></th>
       <th scope="col">#</th>
-      <th scope="col" style="font-variant: all-small-caps;">Nombre</th>
-      <th scope="col" style="font-variant: all-small-caps;">Apellido</th>
-      <th scope="col" style="font-variant: all-small-caps;">Rol</th>
-      <th scope="col" style="font-variant: all-small-caps;">Correo</th>
+      <th scope="col" style="font-variant: all-small-caps;">Paquete</th>
+      <th scope="col" style="font-variant: all-small-caps;">Actividades</th>
     </tr>
   </thead>
   <tbody>
-    @foreach($personal as $personal)
+    @foreach($paquetes as $data)
       <tr>
-        <td><input type="radio" id="radios" name="personal" value="$personal[5]" /></td>
-        <th scope="row">{{$personal[0]}}</th>
-        <td>{{$personal[1]}}</td>
-        <td>{{$personal[2]}}</td>
-        <td>{{$personal[3]}}</td>
-        <td>{{$personal[4]}}</td>
+        <td><input type="radio" id="radios" name="paquete" value="$paquetes[0]" /></td>
+        <th scope="row">{{$data[0]}}</th>
+        <td>{{$data[1]}}</td>
+        <td>
+        @foreach($actividades as $actividad)
+          @if($actividad[0]==$data[0])
+            {{$actividad[1]}} <br>
+          @endif
+        @endforeach
+        </td>
       </tr>
    @endforeach
   </tbody>
@@ -47,27 +49,27 @@
 <div class="container">
 <div class="row">
 <div class="col-4">
-<button name="botonopcion" class="btn btn-primary" type="submit" value="crear" style="text-align: center;height:40px;width:200px;border-width: 0px;" value="crear">Agregar Nuevo Personal</button>
+<button name="botonopcion" class="btn btn-primary" type="submit" value="crear" style="text-align: center;height:40px;width:200px;border-width: 0px;" value="crear">Agregar Nuevo Paquete</button>
 </div>
 <div class="col-4">
-<button name="botonopcion" class="btn btn-primary" type="submit" value="modificar" style=" text-align: center;height:40px;width:200px;border-width: 0px;" value="modificar">Modificar Personal</button>
+<button name="botonopcion" class="btn btn-primary" type="submit" value="modificar" style=" text-align: center;height:40px;width:200px;border-width: 0px;" value="modificar">Modificar Paquete</button>
 </div>
 <div class="col-4">
-<button name="botonopcion" class="btn btn-primary" type="submit" value="eliminar" style=" text-align: center;height:40px;width:200px;border-width: 0px;" value="eliminar">Eliminar Personal</button>
+<button name="botonopcion" class="btn btn-primary" type="submit" value="eliminar" style=" text-align: center;height:40px;width:200px;border-width: 0px;" value="eliminar">Eliminar Paquete</button>
 </div>
 </div>
 </div>
 
 
   </form>
-<form action="{{route ('GestionarActividad')}}" method="post">
+<form action="{{route ('GestionarMaterial')}}" method="post">
 {{csrf_field()}}
 <div class="container">
 <div class="row">
 <div class="col-4">
 </div>
 <div class="col-4">
-<button name="botonopcion" class="btn btn-success" type="submit" value="crear" style="text-align: center;height:60px;width:200px;border-width: 0px;">Gestionar Actividades del Evento</button>
+<button name="botonopcion" class="btn btn-success" type="submit" value="crear" style="text-align: center;height:60px;width:200px;border-width: 0px;">Gestionar Materiales del Evento</button>
 </div>
 </div>
 </div>

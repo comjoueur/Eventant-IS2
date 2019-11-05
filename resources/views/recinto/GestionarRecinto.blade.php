@@ -28,17 +28,19 @@
       <th scope="col">#</th>
       <th scope="col" style="font-variant: all-small-caps;">Nombre</th>
       <th scope="col" style="font-variant: all-small-caps;">Capacidad</th>
+      <th scope="col" style="font-variant: all-small-caps;">Ubicacion</th>
       <th scope="col" style="font-variant: all-small-caps;">Descripción</th>
     </tr>
   </thead>
   <tbody>
-    @foreach($recintos as $recintos)
+    @foreach($recintos as $data)
       <tr>
-        <td><input type="radio" id="radios" name="recinto" value="$recintos[4]" /></td>
-        <th scope="row">{{$recintos[0]}}</th>
-        <td>{{$recintos[1]}}</td>
-        <td>{{$recintos[2]}}</td>
-        <td>{{$recintos[3]}}</td>
+        <td><input type="radio" id="radios" name="recinto" value="{{$data->id_amb}}" ></td>
+        <th scope="row">{{$data->ubicacion}}</th>
+        <td>{{$data->nombre}}</td>
+        <td>{{$data->ubicacion}}</td>
+        <td>{{$data->capacidad}}</td>
+        <td>{{$data->descripcion}}</td>
       </tr>
    @endforeach
   </tbody>

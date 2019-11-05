@@ -14,19 +14,23 @@
 @include('layout.nav-menu')
 <br>
 <div class="container">
-<div><h1>Adaptar Recinto</h1></div>
+<div><h1>Adaptar Recint</h1></div>
 <form action="{{route ('AdaptarRecinto')}}" method="post">
 {{csrf_field()}}
   <div class="form-group">
     <label for="Recinto">Nombre</label>
-    <input type="text" class="form-control" id="recinto" name="recinto">
+    <input type="text" id="recinto" name="recinto" value="{{$data->nombre}}">
+  </div>
+  <div class="form-group">
+    <label for="ubicacion">Ubicación</label>
+    <input type="text" class="form-control" id="ubicacion" name="ubicacion" value="{{$data->ubicacion}}">
   </div>
   <div class="form-group">
   <label for="capacidad">Capacidad (Personas)</label>
-    <input class="form-control" id="capacidad" name="capacidad" type="number">
+    <input class="form-control" id="capacidad" name="capacidad" type="number" value="{{$data->capacidad}}">
   </div>
   <label for="descripcion">Descripción</label>
-    <input class="form-control" id="descripcion" name="descripcion" type="text">
+    <input class="form-control" id="descripcion" name="descripcion" type="text" value="{{$data->descripcion}}">
   </div>
   <br>
   <div class="row">

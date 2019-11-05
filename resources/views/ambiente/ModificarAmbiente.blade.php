@@ -22,6 +22,10 @@
     <input type="text" class="form-control" id="ambiente" name="ambiente">
   </div>
   <div class="form-group">
+    <label for="ubicacion">Ubicación</label>
+    <input type="text" class="form-control" id="ubicacion" name="ubicacion">
+  </div>
+  <div class="form-group">
   <label for="Capacidad">Capacidad (Personas)</label>
     <input class="form-control" id="capacidad" name="capacidad" type="number">
   </div>

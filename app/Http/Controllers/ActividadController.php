@@ -19,7 +19,8 @@ class ActividadController extends Controller
     public function CrearActividad(Request $request){
         $encargado=['Felix','Mario','Juan'];
         $expositor=['Mario','Luque','Alonso'];
-        return view('actividad.CrearActividad',['encargados'=>$encargado,'expositor'=>$expositor]);
+        $ambiente=['amb','amb1','amb2'];
+        return view('actividad.CrearActividad',['ambientes'=>$ambiente,'encargados'=>$encargado,'expositor'=>$expositor]);
     }
     public function ModificarActividadstore(Request $request){
         return $this->GestionarActividad($request);
@@ -27,7 +28,8 @@ class ActividadController extends Controller
     public function ModificarActividad(Request $request){
         $encargado=['Felix','Mario','Juan'];
         $expositor=['Mario','Luque','Alonso'];
-        return view('actividad.ModificarActividad',['encargados'=>$encargado,'expositor'=>$expositor]);
+        $ambiente=['amb','amb1','amb2'];
+        return view('actividad.ModificarActividad',['ambientes'=>$ambiente,'encargados'=>$encargado,'expositor'=>$expositor]);
     }
     public function EliminarActividad(Request $request){
         return $this->GestionarActividad($request);

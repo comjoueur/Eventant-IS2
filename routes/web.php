@@ -13,7 +13,7 @@ Route::get('welcome', function () {
 
 /*EVENTOS*/
 
-Route::get('gestionarEvento', 'EventoController@GestionarEvento');
+Route::get('gestionarEvento', 'EventoController@GestionarEvento')->name('gestionarEvento');
 
 Route::post('OpcionEvento', 'EventoController@OpcionEvento')->name('OpcionEvento');
 
@@ -58,6 +58,18 @@ Route::post('OpcionPaquete', 'PaqueteController@OpcionPaquete')->name('OpcionPaq
 Route::post('CrearPaquete', 'PaqueteController@CrearPaquetestore')->name('CrearPaquete');
 
 Route::post('ModificarPaquete', 'ModificarController@ModificarPaquetestore')->name('ModificarPaquete');
+
+/*********************************************************************/
+
+/*Material*/
+
+Route::post('GestionarMaterial','MaterialController@GestionarMaterial')->name('GestionarMaterial');
+
+Route::post('OpcionMaterial', 'MaterialController@OpcionMaterial')->name('OpcionMaterial');
+
+Route::post('CrearMaterial', 'MaterialController@CrearMaterialstore')->name('CrearMaterial');
+
+Route::post('ModificarMaterial', 'MaterialController@ModificarMaterialstore')->name('ModificarMaterial');
 
 /*******************************************************************************************************************************************************/
 

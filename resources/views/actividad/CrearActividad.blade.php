@@ -17,7 +17,6 @@
 <div><h1>Crear Actividad</h1></div>
 <form action="{{route ('CrearActividad')}}" method="post">
 {{csrf_field()}}
-<div class="form-group">
   <div class="form-group">
     <label for="actividad">Nombre</label>
     <input type="text" class="form-control" id="evento" name="actividad" placeholder="Nombre de la actividad">
@@ -37,35 +36,105 @@
   <div class="form-group">
   <label for="encargado">Encargado</label>
     <select class="form-control" id="encargado" name="encargado">
-    @foreach($encargados as $encargados)
-      <option value="$encargados">{{$encargados}}</option>
+    @foreach($encargados as $data)
+      <option value="$data">{{$data}}</option>
     @endforeach
     </select>
   </div>
-  <script type='text/javascript'>
-        function addFields(){
-            // Number of inputs to create
-            var number = document.getElementById("member").value;
-            // Container <div> where dynamic content will be placed
-            var container = document.getElementById("container");
-            // Clear previous contents of the container
-            while (container.hasChildNodes()) {
-                container.removeChild(container.lastChild);
-            }
-            for (i=0;i<number;i++){
-                var input = document.createElement("input");
-                input.type = "text";
-                input.class = "form-control";
-                input.name = "expositor" + i;
-                container.appendChild(input);
-                // Append a line break 
-                container.appendChild(document.createElement("br"));
-            }
+  <div class="form-group">
+  <label>Expositor(es)</label>
+  <script>
+  
+  $(document).ready(function() {
+    var max_fields = 10;
+    var wrapper = $(".container1");
+    var add_button = $(".add_form_field");
+
+    var x = 1;
+    $(add_button).click(function(e) {
+        e.preventDefault();
+        if (x < max_fields) {
+            x++;
+            $(wrapper).append('<div class="form-group"><input type="text" name="expositor[]"/><button href="#" class="delete"> Delete</button></div>'); //add input box
+        } else {
+            alert('You Reached the limits')
         }
-    </script>
-<input type="text" class="form-control" id="member" name="member" value="">Numero de expositores <br>
-    <a href="#" id="filldetails" onclick="addFields()">Crear Campos</a>
-    <div id="container"></div>
+    });
+
+    $(wrapper).on("click", ".delete", function(e) {
+        e.preventDefault();
+        $(this).parent('div').remove();
+        x--;
+    })
+});
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<div class="container1">
+    <button class="add_form_field">Agregar Expositor &nbsp; 
+      <span style="font-size:16px; font-weight:bold;">+ </span>
+    </button>
+    <div class="form-group"><input type="text" name="expositor[]"></div>
+</div>
+
+</div>
+  <br>
+
+  <div class="form-group">
+  <label>Ambiente</label>
+  <script>
+  
+  $(document).ready(function() {
+    var max_fields1 = 10;
+    var wrapper1 = $(".container2");
+    var add_button1 = $(".add_form_field2");
+
+    var x1 = 1;
+    $(add_button1).click(function(e1) {
+        e1.preventDefault();
+        if (x1 < max_fields1) {
+            x1++;
+            $(wrapper1).append('<div><br> <div class="card"> <div class="card-body"> <div class="form-group"> <label> Fecha <label> <input type="date" name="fecha[]"></div> <div class="form-group"><label> Hora <label> <input type="time" name="hora[]"> </div> <div class="form-group"> <label for="encargado1">Ambiente</label> <select class="form-control" id="ambie" name="ambie[]"> @foreach($ambientes as $amb) <option value="$amb">{{$amb}}</option> @endforeach </select> </div> </div> </div> <button href="#" class="delete"> Delete</button></div>'); //add input box
+        } else {
+            alert('You Reached the limits')
+        }
+    });
+
+    $(wrapper1).on("click", ".delete", function(e1) {
+        e1.preventDefault();
+        $(this).parent('div').remove();
+        x1--;
+    })
+});
+</script>
+<div class="container2">
+    <button type="button" class="add_form_field2">Agregar Fecha y ambiente &nbsp; 
+      <span style="font-size:16px; font-weight:bold;">+ </span>
+    </button>
+    <br>
+    <br>
+    <div class="card">
+    <div class="card-body">
+    <div class="form-group">
+    <label> Fecha <label>
+    <input type="date" name="fecha[]">
+    </div>
+    <div class="form-group">
+    <label> Hora <label>
+    <input type="time" name="hora[]">
+    </div>
+    <div class="form-group">
+      <label for="encargado1">Ambiente</label>
+      <select class="form-control" id="ambie" name="ambie[]">
+        @foreach($ambientes as $amb)
+          <option value="$amb">{{$amb}}</option>
+        @endforeach
+      </select>
+    </div>
+    </div>
+    </div>
+  </div>
+  </div>
   <br>
   <br>
   <br>
