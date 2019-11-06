@@ -16,22 +16,40 @@ class AmbienteController extends Controller
         return view('ambiente.GestionarAmbiente', ['ambientes'=>$ambientes,'id_recinto'=>$request->id_recinto]);
     }
     public function CrearAmbientestore(Request $request){
-        return (new AmbienteController)->GestionarAmbiente($request);
+        $id_amb=DB::table('ambientes')->insertGetId(
+            ['id_amb' => NULL, 'nombre' => $request->ambiente , 'ubicacion' => $request->ubicacion , 'capacidad' => $request->capacidad, 'descripcion' => $request->descripcion, 'Ambientesid_amb' => $request->id_recinto]
+        );
+        $request->merge(['id_amb' => $id_amb]);
+        return (new MaterialEController)->GestionarMaterialE($request);
     }
     public function AdaptarAmbientestore(Request $request){
-        return (new AmbienteController)->GestionarAmbiente($request);
+        $id_amb=DB::table('ambientes')->insertGetId(
+            ['id_amb' => NULL, 'nombre' => $request->ambiente , 'ubicacion' => $request->ubicacion , 'capacidad' => $request->capacidad, 'descripcion' => $request->descripcion, 'Ambientesid_amb' => $request->id_recinto]
+        );
+        $request->merge(['id_amb' => $id_amb]);
+        return (new MaterialEController)->GestionarMaterialE($request);
     }
     public function ModificarAmbientestore(Request $request){
-        return (new AmbienteController)->GestionarAmbiente($request);
+        DB::table('ambientes')->where('id_amb','=',$request->id_amb)->update(['nombre' => $request->ambiente , 'ubicacion' => $request->ubicacion , 'capacidad' => $request->capacidad, 'descripcion' => $request->descripcion, 'Ambientesid_amb' => $request->id_recinto]);
+        return (new MaterialEController)->GestionarMaterialE($request);
     }
     public function CrearAmbiente(Request $request){
-        return view('ambiente.CrearAmbiente');
+        $id_recinto=$request->id_recinto;
+        return view('ambiente.CrearAmbiente',['id_recinto'=>$id_recinto]);
     }
     public function AdaptarAmbiente(Request $request){
-        return view('ambiente.AdaptarAmbiente');
+        $id_recinto=$request->id_recinto;
+        $id_amb=$request->ambiente;
+        $data=DB::table('ambientes')->select('id_amb','nombre','ubicacion','capacidad','descripcion')->where('id_amb','=',$id_amb)->get();
+        $data[0]->id_recinto=$id_recinto;
+        return view('ambiente.AdaptarAmbiente',['data'=>$data[0]]);
     }
     public function ModificarAmbiente(Request $request){
-        return view('ambiente.ModificarAmbiente');
+        $id_recinto=$request->id_recinto;
+        $id_amb=$request->ambiente;
+        $data=DB::table('ambientes')->select('id_amb','nombre','ubicacion','capacidad','descripcion')->where('id_amb','=',$id_amb)->get();
+        $data[0]->id_recinto=$id_recinto;
+        return view('ambiente.ModificarAmbiente',['data'=>$data[0]]);
     }
     public function OpcionAmbiente(Request $request){
         if($request->botonopcion=='crear'){

@@ -14,32 +14,27 @@
 @include('layout.nav-menu')
 <br>
 <div class="container">
-<div><h1>Modificar Ambiente</h1></div>
-<form action="{{route ('ModificarAmbiente')}}" method="post">
-<input type="hidden" name="id_recinto" value={{$data->id_recinto}}>
-<input type="hidden" name="id_amb" value={{$data->id_amb}}>
+<div><h1>Crear Material</h1></div>
+<form action="{{route ('CrearMaterialE')}}" method="post">
 {{csrf_field()}}
+<input type="hidden" name="id_amb" value={{$id_amb}}>
   <div class="form-group">
-    <label for="ambiente">Nombre</label>
-    <input type="text" class="form-control" id="ambiente" name="ambiente" value="{{$data->nombre}}">
+    <label for="materiale">Nombre</label>
+    <input type="text" class="form-control" id="materiale" name="materiale">
   </div>
   <div class="form-group">
-    <label for="ubicacion">Ubicación</label>
-    <input type="text" class="form-control" id="ubicacion" name="ubicacion" value="{{$data->ubicacion}}">
+  <label for="Capacidad">Cantidad</label>
+    <input class="form-control" id="cantidad" name="cantidad" type="number">
   </div>
-  <div class="form-group">
-  <label for="capacidad">Capacidad (Personas)</label>
-    <input class="form-control" id="capacidad" name="capacidad" type="number" value={{$data->capacidad}}>
-  </div>
-  <label for="descripcion">Descripción</label>
-    <input class="form-control" id="descripcion" name="descripcion" type="text" value="{{$data->descripcion}}">
+  <label for="Capacidad">Descripción</label>
+    <input class="form-control" id="descripcion" name="descripcion" type="text">
   </div>
   <br>
   <div class="row">
   <div class="col-4">
   </div>
   <div class="col-4">
-  <button type="submit" class="btn btn-success" style=" text-align: center;height:40px;width:200px;border-width: 0px;">Gestionar Materiales</button>
+  <button type="submit" class="btn btn-success" style=" text-align: center;height:40px;width:200px;border-width: 0px;">Crear Material</button>
   </div>
   </div>
   <br>

@@ -28,7 +28,6 @@ class RecintoController extends Controller
         $id_recin=DB::table('ambientes')->insertGetId(
             ['id_amb' => NULL, 'nombre' => $request->recinto , 'ubicacion' => $request->ubicacion , 'capacidad' => $request->capacidad, 'descripcion' => $request->descripcion, 'Ambientesid_amb' => NULL]
         );
-        $id_recin= DB::table('ambientes')->select('id_amb')->where('nombre','=',$request->recinto)->get();
         $request->merge(['id_recinto' => $id_recin]);
         return (new AmbienteController)->GestionarAmbiente($request);
     }

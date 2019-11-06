@@ -17,6 +17,7 @@
 <div><h1>Crear Ambiente</h1></div>
 <form action="{{route ('CrearAmbiente')}}" method="post">
 {{csrf_field()}}
+<input type="hidden" name="id_recinto" value={{$id_recinto}}>
   <div class="form-group">
     <label for="ambiente">Nombre</label>
     <input type="text" class="form-control" id="ambiente" name="ambiente">

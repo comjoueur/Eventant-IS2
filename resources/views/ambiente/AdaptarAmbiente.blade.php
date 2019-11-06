@@ -16,21 +16,22 @@
 <div class="container">
 <div><h1>Adaptar Ambiente</h1></div>
 <form action="{{route ('AdaptarAmbiente')}}" method="post">
+<input type="hidden" name="id_recinto" value={{$data->id_recinto}}>
 {{csrf_field()}}
   <div class="form-group">
     <label for="ambiente">Nombre</label>
-    <input type="text" class="form-control" id="ambiente" name="ambiente">
+    <input type="text" class="form-control" id="ambiente" name="ambiente" value="{{$data->nombre}}">
   </div>
   <div class="form-group">
     <label for="ubicacion">Ubicación</label>
-    <input type="text" class="form-control" id="ubicacion" name="ubicacion">
+    <input type="text" class="form-control" id="ubicacion" name="ubicacion" value="{{$data->ubicacion}}">
   </div>
   <div class="form-group">
-  <label for="Capacidad">Capacidad (Personas)</label>
-    <input class="form-control" id="capacidad" name="capacidad" type="number">
+  <label for="capacidad">Capacidad (Personas)</label>
+    <input class="form-control" id="capacidad" name="capacidad" type="number" value={{$data->capacidad}}>
   </div>
-  <label for="Capacidad">Descripción</label>
-    <input class="form-control" id="descripcion" name="descripcion" type="text">
+  <label for="descripcion">Descripción</label>
+    <input class="form-control" id="descripcion" name="descripcion" type="text" value="{{$data->descripcion}}">
   </div>
   <br>
   <div class="row">

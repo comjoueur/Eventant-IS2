@@ -14,22 +14,18 @@
 @include('layout.nav-menu')
 <br>
 <div class="container">
-<div><h1>Modificar Ambiente</h1></div>
-<form action="{{route ('ModificarAmbiente')}}" method="post">
-<input type="hidden" name="id_recinto" value={{$data->id_recinto}}>
+<div><h1>Modificar Material</h1></div>
+<form action="{{route ('ModificarMaterialE')}}" method="post">
 <input type="hidden" name="id_amb" value={{$data->id_amb}}>
+<input type="hidden" name="id_mat" value={{$data->id_mat}}>
 {{csrf_field()}}
   <div class="form-group">
     <label for="ambiente">Nombre</label>
-    <input type="text" class="form-control" id="ambiente" name="ambiente" value="{{$data->nombre}}">
+    <input type="text" class="form-control" id="materiale" name="materiale" value="{{$data->nombre}}">
   </div>
   <div class="form-group">
-    <label for="ubicacion">Ubicación</label>
-    <input type="text" class="form-control" id="ubicacion" name="ubicacion" value="{{$data->ubicacion}}">
-  </div>
-  <div class="form-group">
-  <label for="capacidad">Capacidad (Personas)</label>
-    <input class="form-control" id="capacidad" name="capacidad" type="number" value={{$data->capacidad}}>
+  <label for="capacidad">Cantidad</label>
+    <input class="form-control" id="cantidad" name="cantidad" type="number" value={{$data->cantidad}}>
   </div>
   <label for="descripcion">Descripción</label>
     <input class="form-control" id="descripcion" name="descripcion" type="text" value="{{$data->descripcion}}">
@@ -39,7 +35,7 @@
   <div class="col-4">
   </div>
   <div class="col-4">
-  <button type="submit" class="btn btn-success" style=" text-align: center;height:40px;width:200px;border-width: 0px;">Gestionar Materiales</button>
+  <button type="submit" class="btn btn-success" style=" text-align: center;height:40px;width:200px;border-width: 0px;">Modificar Material</button>
   </div>
   </div>
   <br>

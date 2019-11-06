@@ -99,6 +99,18 @@ Route::post('AdaptarAmbiente' , 'AmbienteController@AdaptarAmbientestore')->name
 
 Route::post('ModificarAmbiente' , 'AmbienteController@ModificarAmbientestore')->name('ModificarAmbiente');
 
+/*********************************************************************/
+
+/*MaterialE*/
+
+Route::post('GestionarMaterialE','MaterialEController@GestionarMaterialE')->name('GestionarMaterialE');
+
+Route::post('OpcionMaterialE', 'MaterialEController@OpcionMaterialE')->name('OpcionMaterialE');
+
+Route::post('CrearMaterialE', 'MaterialEController@CrearMaterialEstore')->name('CrearMaterialE');
+
+Route::post('ModificarMaterialE', 'MaterialEController@ModificarMaterialEstore')->name('ModificarMaterialE');
+
 
 /*******************************************************************************************************************************************************/
 

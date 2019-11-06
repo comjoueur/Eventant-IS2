@@ -17,6 +17,10 @@
       <li class="nav-item">
       <button type="button" style="text-align: center;height:60px;width:230px;border-width: 0px;" class="btn btn-dark btn-lg bg-dark"><a class="nav-link" href="gestionarCaja"><h5>Gestionar Caja</h5></a></button>
       </li>
+      <li class="nav-item">
+      <button type="button" style="text-align: center;height:60px;width:230px;border-width: 0px;" class="btn btn-dark btn-lg bg-dark"><a class="nav-link" href="gestionarCaja"><h5>Gestionar Caja</h5></a></button>
+      </li>
     </ul>
+    <div style="text-align: center;height:40px;width:150px"><a  class="navbar-brand" href="{{URL::previous() }}"><h6>Back</h6></a></div>
   </div>
 </nav>
