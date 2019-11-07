@@ -17,29 +17,39 @@
 <div><h1>Modificar Paquete</h1></div>
 <form action="{{route ('ModificarPaquete')}}" method="post">
 {{csrf_field()}}
+<input name="id_evento" type="hidden" value={{$id_evento}} >
+<input name="id_paquete" type="hidden" value={{$data->id_paquete}}>
   <div class="form-group">
   <label for="nombre">Nombre</label>
-    <input class="form-control" id="nombre" name="nombre">
+    <input class="form-control" id="nombre" name="nombre" value="{{$data->nombre}}">
   </div>
   <div class="form-group">
   <label for="PrecioEstudiante">Precio Estudiante</label>
-    <input class="form-control" id="PrecioEstudiante" name="PrecioEstudiante" type="text">
+    <input class="form-control" id="PrecioEstudiante" name="PrecioEstudiante" type="number" value="{{$data->precioEst}}">
   </div>
   <div class="form-group">
   <label for="PrecioProfesional">Precio Profesional</label>
-    <input class="form-control" id="PrecioProfesional" name="PrecioProfesional" type="email">
+    <input class="form-control" id="PrecioProfesional" name="PrecioProfesional" type="number" value="{{$data->precioProf}}">
   </div>
   <div class="form-group">
   <label for="PrecioColaborador">Precio Colaborador</label>
-    <input class="form-control" id="PrecioColaborador" name="PrecioColaborador" type="text">
+    <input class="form-control" id="PrecioColaborador" name="PrecioColaborador" type="number" value="{{$data->precioColab}}">
   </div>
   <div class="form-group">
     Actividades:<br>
-    @foreach ($actividades as $actividad)
+    @foreach ($activis as $actividad)
     <li class="list-group-item">
     <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="$actividad[0]" id="$actividad[0]">
-        <label class="form-check-label" for="$actividad[0]">{{ $actividad[1] }} </label>
+        <input class="form-check-input" type="checkbox" name="acti[]" value={{$actividad->id_act}} id="act" 
+        <?php
+          for($i=0;$i<sizeof($data->actividades);$i=$i+1){
+            if($data->actividades[$i]->id_act == $actividad->id_act){
+              echo ' checked';
+            }
+          }
+        ?>
+        >
+        <label class="form-check-label" for='act'>{{ $actividad->nombre }} </label>
     </div>
     </li>
     @endforeach
@@ -51,7 +61,7 @@
   <div class="col-4">
   </div>
   <div class="col-4">
-  <button type="submit" class="btn btn-success" style=" text-align: center;height:40px;width:200px;border-width: 0px;">Agregar</button>
+  <button type="submit" class="btn btn-success" style=" text-align: center;height:40px;width:200px;border-width: 0px;">Modificar</button>
   </div>
   </div>
   <br>

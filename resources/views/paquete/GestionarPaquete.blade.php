@@ -15,10 +15,10 @@
 
 <div class="container">
   <br>
-  <h2>Paquetes del evento {{$evento}}</h2>
+  <h2>Paquetes</h2>
   <form  action="{{route ('OpcionPaquete')}}" method="post" >
     {{csrf_field()}}
-
+  <input name="id_evento" type="hidden" value={{$id_evento}} >
     <table class="table">
   <thead>
     <tr>
@@ -31,14 +31,19 @@
   <tbody>
     @foreach($paquetes as $data)
       <tr>
-        <td><input type="radio" id="radios" name="paquete" value="$paquetes[0]" /></td>
-        <th scope="row">{{$data[0]}}</th>
-        <td>{{$data[1]}}</td>
+      <?php
+        if($data->count==1){
+          echo '<td><input type="radio" id="radios" name="paquete" value='.$data->id_paquete.' checked></td>';
+        }
+        else{
+          echo '<td><input type="radio" id="radios" name="paquete" value='.$data->id_paquete.'></td>';
+        }
+        ?>
+        <th scope="row">{{$data->count}}</th>
+        <td>{{$data->nombre}}</td>
         <td>
-        @foreach($actividades as $actividad)
-          @if($actividad[0]==$data[0])
-            {{$actividad[1]}} <br>
-          @endif
+        @foreach($data->actividades as $actividad)
+            {{$actividad->nombre}} <br>
         @endforeach
         </td>
       </tr>

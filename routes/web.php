@@ -57,7 +57,7 @@ Route::post('OpcionPaquete', 'PaqueteController@OpcionPaquete')->name('OpcionPaq
 
 Route::post('CrearPaquete', 'PaqueteController@CrearPaquetestore')->name('CrearPaquete');
 
-Route::post('ModificarPaquete', 'ModificarController@ModificarPaquetestore')->name('ModificarPaquete');
+Route::post('ModificarPaquete', 'PaqueteController@ModificarPaquetestore')->name('ModificarPaquete');
 
 /*********************************************************************/
 
