@@ -50,7 +50,6 @@ class MaterialEController extends Controller
         $id_mat=$request->material;
         $data=DB::table('materiales')->join('matestaticos','matestaticos.Materialesid_mat','=','materiales.id_mat')->select('id_mat','descripcion','nombre','cantidad')->where('matestaticos.Ambientesid_amb','=',$id_amb)->where('id_mat','=',$id_mat)->get();
         $data[0]->id_amb=$id_amb;
-        print_r($data[0]->id_mat);
         return view('materiale.ModificarMaterialE',['data'=>$data[0]]);
     }
     public function OpcionMaterialE(Request $request){

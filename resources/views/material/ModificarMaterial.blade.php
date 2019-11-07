@@ -16,18 +16,20 @@
 <div class="container">
 <div><h1>Modificar Material</h1></div>
 <form action="{{route ('ModificarMaterial')}}" method="post">
+  <input type="hidden" name="id_evento" value={{$data->id_evento}}>
+  <input type="hidden" name="id_mat" value={{$data->id_mat}}>
 {{csrf_field()}}
   <div class="form-group">
   <label for="nombre">Nombre</label>
-    <input class="form-control" id="nombre" name="nombre">
+    <input class="form-control" id="nombre" name="nombre" value="{{$data->nombre}}">
   </div>
   <div class="form-group">
   <label for="descripcion">Descripcion</label>
-    <input class="form-control" id="descripcion" name="descripcion" type="text">
+    <input class="form-control" id="descripcion" name="descripcion" value="{{$data->descripcion}}">
   </div>
   <div class="form-group">
   <label for="cantidad">Cantidad</label>
-    <input class="form-control" id="cantidad" name="cantidad" type="email">
+    <input class="form-control" id="cantidad" name="cantidad" type="number" value="{{$data->cantidad}}">
   </div>
   
   </div>

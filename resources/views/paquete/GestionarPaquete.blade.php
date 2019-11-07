@@ -73,6 +73,7 @@
 <div class="row">
 <div class="col-4">
 </div>
+<input name="id_evento" type="hidden" value={{$id_evento}} >
 <div class="col-4">
 <button name="botonopcion" class="btn btn-success" type="submit" value="crear" style="text-align: center;height:60px;width:200px;border-width: 0px;">Gestionar Materiales del Evento</button>
 </div>

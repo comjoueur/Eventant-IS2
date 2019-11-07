@@ -17,6 +17,7 @@
 <div><h1>Agregar Material</h1></div>
 <form action="{{route ('CrearMaterial')}}" method="post">
 {{csrf_field()}}
+  <input type="hidden" name="id_evento" value={{$id_evento}}>
   <div class="form-group">
   <label for="nombre">Nombre</label>
     <input class="form-control" id="nombre" name="nombre">
@@ -27,7 +28,7 @@
   </div>
   <div class="form-group">
   <label for="cantidad">Cantidad</label>
-    <input class="form-control" id="cantidad" name="cantidad" type="email">
+    <input class="form-control" id="cantidad" name="cantidad" type="number">
   </div>
   
   </div>
