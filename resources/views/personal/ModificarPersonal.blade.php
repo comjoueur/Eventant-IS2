@@ -17,29 +17,35 @@
 <div><h1>Modificar datos de Trabajador</h1></div>
 <form action="{{route ('ModificarPersonal')}}" method="post">
 {{csrf_field()}}
+<input name="id_evento" value="{{$data->id_evento}}" type="hidden">
+<input name="id_trab" value="{{$data->id_trab}}" type="hidden">
   <div class="form-group">
-    <label for="dni">DNI</label>
-    <input type="text" class="form-control" id="dni" name="dni">
+  <label for="nombre" >Nombre</label>
+    <input class="form-control" value="{{$data->nombre}}" id="nombre" name="nombre">
   </div>
   <div class="form-group">
-  <label for="nombre">Nombre</label>
-    <input class="form-control" id="nombre" name="nombre">
+  <label for="apellido" >Apellido</label>
+    <input class="form-control" value="{{$data->apellido}}" id="apellido" name="apellido" type="text">
   </div>
   <div class="form-group">
-  <label for="apellido">Apellido</label>
-    <input class="form-control" id="apellido" name="apellido" type="text">
+  <label for="correo" >Correo</label>
+    <input class="form-control" value="{{$data->correo}}" id="correo" name="correo" type="email">
   </div>
   <div class="form-group">
-  <label for="correo">Correo</label>
-    <input class="form-control" id="correo" name="correo" type="email">
+  <label for="rol" >Rol</label>
+    <select class="form-control" name="rol">
+      <option value="Encargado" <?php if($data->rol=='Encargado'){echo "selected";}?> >Encargado</option>
+      <option value="Organizador" <?php if($data->rol=='Organizador'){echo "selected";}?> >Organizador</option>
+      <option value="Colaborador" <?php if($data->rol=='Colaborador'){echo "selected";}?> >Colaborador</option>
+    </select>
   </div>
   <div class="form-group">
-  <label for="usuario">Usuario</label>
-    <input class="form-control" id="usuario" name="usuario" type="text">
+  <label for="usuario" >Usuario</label>
+    <input class="form-control" value="{{$data->usuario}}" id="usuario" name="usuario" type="text">
   </div>
   <div class="form-group">
-  <label for="contrasena">Contraseña</label>
-    <input class="form-control" id="contrasena" name="contrasena" type="password">
+  <label for="contrasena" >Contraseña</label>
+    <input class="form-control" value="{{$data->contra}}" id="contrasena" name="contra" type="password">
   </div>
   </div>
   <br>

@@ -17,9 +17,10 @@
 <div><h1>Agregar Trabajador</h1></div>
 <form action="{{route ('CrearPersonal')}}" method="post">
 {{csrf_field()}}
+  <input name="id_evento" value="{{$data}}" type="hidden">
   <div class="form-group">
     <label for="dni">DNI</label>
-    <input type="text" class="form-control" id="dni" name="dni">
+    <input type="number" class="form-control" id="dni" name="dni">
   </div>
   <div class="form-group">
   <label for="nombre">Nombre</label>
@@ -34,12 +35,20 @@
     <input class="form-control" id="correo" name="correo" type="email">
   </div>
   <div class="form-group">
+  <label for="rol" >Rol</label>
+    <select class="form-control" name="rol">
+      <option value="Encargado">Encargado</option>
+      <option value="Organizador">Organizador</option>
+      <option value="Colaborador">Colaborador</option>
+    </select>
+  </div>
+  <div class="form-group">
   <label for="usuario">Usuario</label>
     <input class="form-control" id="usuario" name="usuario" type="text">
   </div>
   <div class="form-group">
   <label for="contrasena">Contraseña</label>
-    <input class="form-control" id="contrasena" name="contrasena" type="password">
+    <input class="form-control" id="contrasena" name="contra" type="password">
   </div>
   </div>
   <br>

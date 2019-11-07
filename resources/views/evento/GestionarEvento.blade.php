@@ -37,10 +37,10 @@
       <tr>
       <?php
         if($events->count==1){
-          echo '<td><input type="radio" id="radios" name="evento" value="'.$events->id_evento.'" checked></td>';
+          echo '<td><input type="radio" id="radios" name="evento" value='.$events->id_evento.' checked></td>';
         }
         else{
-          echo '<td><input type="radio" id="radios" name="evento" value="'.$events->id_evento.'"></td>';
+          echo '<td><input type="radio" id="radios" name="evento" value='.$events->id_evento.'></td>';
         }
         ?>
         <th scope="row">{{$events->count}}</th>

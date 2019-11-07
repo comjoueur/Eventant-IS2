@@ -26,10 +26,10 @@
     @foreach($recintos as $dat)
       <?php
       if( $dat->id_amb == $data->Ambientesid_amb){
-        echo('<option value='.$dat->id_amb.' selected>"'.$dat->nombre.'"</option>');
+        echo('<option value='.$dat->id_amb.' selected>'.$dat->nombre.'</option>');
       }
       else{
-        echo('<option value='.$dat->id_amb.'>"'.$dat->nombre.'"</option>');
+        echo('<option value='.$dat->id_amb.'>'.$dat->nombre.'</option>');
       }
       ?>
     @endforeach
@@ -64,21 +64,21 @@
   <div class="col-4">
   <form action="{{route ('GestionarActividad')}}" method="post">
   {{csrf_field()}}
-  <input id="prodId" name="prodId1" type="hidden" value="aqui va el id">
+  <input id="prodId" name="id_evento" type="hidden" value={{$data->id_evento}}>
   <button type="submit" class="btn btn-success" style=" text-align: center;height:40px;width:200px;border-width: 0px;">Gestionar Actividades</button>
   </form>
   </div>
   <div class="col-4">
   <form action="{{route ('GestionarPaquete')}}" method="post">
   {{csrf_field()}}
-  <input id="prodId" name="prodId2" type="hidden" value="aqui va el id">
+  <input id="prodId" name="id_evento" type="hidden" value={{$data->id_evento}}>
   <button type="submit" class="btn btn-success" style=" text-align: center;height:40px;width:200px;border-width: 0px;">Gestionar Paquetes</button>
   </form>
   </div>
   <div class="col-4">
   <form action="{{route ('GestionarPersonal')}}" method="post">
   {{csrf_field()}}
-  <input id="prodId" name="prodId3" type="hidden" value="aqui va el id">
+  <input id="prodId" name="id_evento" type="hidden" value={{$data->id_evento}}>
   <button type="submit" class="btn btn-success" style=" text-align: center;height:40px;width:200px;border-width: 0px;">Gestionar Personal</button>
   </form>
   </div>

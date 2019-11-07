@@ -21,7 +21,7 @@
   <label for="recinto">Recinto</label>
     <select class="form-control" id="recinto" name="recinto">
     @foreach($recintos as $data)
-      <option value={{$data->id_amb}}>"{{$data->nombre}}"</option>
+      <option value={{$data->id_amb}}>{{$data->nombre}}</option>
     @endforeach
     </select>
     <small id="emailHelp" class="form-text text-muted">¿No encuentras el recinto adecuado para tu evento?, Créalo haciendo <a href="gestionarRecinto">click aquí</a></small>

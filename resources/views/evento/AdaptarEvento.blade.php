@@ -25,10 +25,10 @@
     @foreach($recintos as $dat)
       <?php
       if( $dat->id_amb == $data->Ambientesid_amb){
-        echo('<option value='.$dat->id_amb.' selected>"'.$dat->nombre.'"</option>');
+        echo('<option value='.$dat->id_amb.' selected>'.$dat->nombre.'</option>');
       }
       else{
-        echo('<option value='.$dat->id_amb.'>"'.$dat->nombre.'"</option>');
+        echo('<option value='.$dat->id_amb.'>'.$dat->nombre.'</option>');
       }
       ?>
     @endforeach

@@ -30,7 +30,6 @@ class EventoController extends Controller
     }
     public function ModificarEventostore(Request $request){
         $id_evento=$request->id_evento;
-        print_r($request->id_evento);
         DB::table('eventos')->where('id_evento','=',$id_evento)->update(
             ['nombre' => $request->evento, 'fechainicio'=>$request->fechainicio, 'fechaFin'=>$request->fechafinal, 'descripcion'=>$request->descripcion,'Ambientesid_amb'=>$request->recinto]
         );
@@ -39,10 +38,10 @@ class EventoController extends Controller
         return view('evento.ModificarEvento',['recintos'=>$recintos,'data'=>$data[0]]);
     }
     public function AdaptarEventostore(Request $request){
-        $id_recin=DB::table('eventos')->insertGetId(
+        $id_evento=DB::table('eventos')->insertGetId(
             ['id_evento' => NULL, 'nombre' => $request->evento, 'fechainicio'=>$request->fechainicio, 'fechaFin'=>$request->fechafinal, 'descripcion'=>$request->descripcion,'estado'=>1,'Ambientesid_amb'=>$request->recinto]
         );
-        $request->id_recin = $id_recin;
+        $request->id_evento = $id_evento;
         return (new PersonalController)->GestionarPersonal($request);
     }
     public function CrearEvento(Request $request){
