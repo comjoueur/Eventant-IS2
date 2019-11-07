@@ -35,12 +35,19 @@
   <tbody>
     @foreach($eventsA as $events)
       <tr>
-        <td><input type="radio" id="radios" name="event" value="$events[5]" /></td>
-        <th scope="row">{{$events[0]}}</th>
-        <td>{{$events[1]}}</td>
-        <td>{{$events[2]}}</td>
-        <td>{{$events[3]}}</td>
-        <td>{{$events[4]}}</td>
+      <?php
+        if($events->count==1){
+          echo '<td><input type="radio" id="radios" name="evento" value="'.$events->id_evento.'" checked></td>';
+        }
+        else{
+          echo '<td><input type="radio" id="radios" name="evento" value="'.$events->id_evento.'"></td>';
+        }
+        ?>
+        <th scope="row">{{$events->count}}</th>
+        <td>{{$events->nombre}}</td>
+        <td>{{$events->fechainicio}}</td>
+        <td>{{$events->fechaFin}}</td>
+        <td>{{$events->descripcion}}</td>
       </tr>
    @endforeach
   </tbody>
@@ -85,14 +92,21 @@
     </tr>
   </thead>
   <tbody>
-    @foreach($eventsP as $events)
+  @foreach($eventsP as $events)
       <tr>
-        <td><input type="radio" name="event2"></td>
-        <th scope="row">{{$events[0]}}</th>
-        <td>{{$events[1]}}</td>
-        <td>{{$events[2]}}</td>
-        <td>{{$events[3]}}</td>
-        <td>{{$events[4]}}</td>
+      <?php
+        if($events->count==1){
+          echo '<td><input type="radio" id="radios" name="evento" value="'.$events->id_evento.'" checked></td>';
+        }
+        else{
+          echo '<td><input type="radio" id="radios" name="evento" value="'.$events->id_evento.'"></td>';
+        }
+        ?>
+        <th scope="row">{{$events->count}}</th>
+        <td>{{$events->nombre}}</td>
+        <td>{{$events->fechainicio}}</td>
+        <td>{{$events->fechaFin}}</td>
+        <td>{{$events->descripcion}}</td>
       </tr>
    @endforeach
   </tbody>

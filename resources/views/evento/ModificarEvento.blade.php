@@ -12,12 +12,6 @@
 
 <body>
 
-<?php
-  if ($noti == 'true') {
-    echo "<script>alert('Evento Modificado!');</script>";
-  }
-?>
-
 @include('layout.nav-menu')
 
 <br>
@@ -25,47 +19,46 @@
 <div><h1>Modificar Evento</h1></div>
 <form action="{{route ('ModificarEvento')}}" method="post">
 {{csrf_field()}}
-<input id="prodId" name="prodId" type="hidden" value="aqui va el id">
-  <div class="form-group">
+<input name="id_evento" type="hidden" value={{$data->id_evento}}>
+<div class="form-group">
   <label for="recinto">Recinto</label>
-    <select class="form-control" id="recinto" name="recinto">
-    @foreach($recintos as $recintos)
-      <option value="$recintos[0]">{{$recintos[1]}}</option>
+    <select class="form-control" id="recinto" name="recinto" value="{{$data->Ambientesid_amb}}">
+    @foreach($recintos as $dat)
+      <?php
+      if( $dat->id_amb == $data->Ambientesid_amb){
+        echo('<option value='.$dat->id_amb.' selected>"'.$dat->nombre.'"</option>');
+      }
+      else{
+        echo('<option value='.$dat->id_amb.'>"'.$dat->nombre.'"</option>');
+      }
+      ?>
     @endforeach
     </select>
-    <small id="emailHelp" class="form-text text-muted">¿No encuentras el recinto adecuado para tu evento?, Créalo haciendo <a href="#">click aquí</a></small>
+    <small id="emailHelp" class="form-text text-muted">¿No encuentras el recinto adecuado para tu evento?, Créalo haciendo <a href="gestionarRecinto">click aquí</a></small>
   </div>
   <div class="form-group">
     <label for="evento">Nombre</label>
-    <input type="text" class="form-control" id="evento" name="evento" placeholder="Nombre del Evento">
+    <input type="text" class="form-control" id="evento" name="evento" placeholder="Nombre del Evento" value="{{$data->nombre}}">
   </div>
   <div class="form-group">
     <label for="fechainicio">Fecha de Inicio</label>
-    <input type="date" class="form-control" id="fechainicio" name="fechainicio">
+    <input type="date" class="form-control" id="fechainicio" name="fechainicio" value="{{$data->fechainicio}}">
   </div>
   <div class="form-group">
     <label for="fechafinal">Fecha de Fin</label>
-    <input type="date" class="form-control" id="fechafinal" name="fechafinal">
+    <input type="date" class="form-control" id="fechafinal" name="fechafinal" value="{{$data->fechaFin}}">
   </div>
   <div class="form-group">
     <label for="descripcion">Descripción</label>
-    <input type="text" class="form-control" id="descripcion" name="descripcion" >
+    <input type="text" class="form-control" id="descripcion" name="descripcion" value="{{$data->descripcion}}">
   </div>
-  <div class="form-group">
-  <label for="encargado">Encargado</label>
-    <select class="form-control" id="encargado" name="encargado">
-    @foreach($encargados as $encargados)
-      <option value="$encargados[0]">{{$encargados[1]}}</option>
-    @endforeach
-    </select>
-  </div>
+  <br>
   <div class="row">
-  <div class="col-4">
-  </div>
   <div class="col-sm">
-  <button type="submit" class="btn btn-primary" style=" text-align: center;height:40px;width:200px;border-width: 0px;">Modificar Evento</button>
+  <button type="submit" class="btn btn-success" style=" text-align: center;height:40px;width:200px;border-width: 0px;">Modificar Evento</button>
   </div>
   </div>
+  <br>
 </form>
 <div class="row">
   <div class="col-4">

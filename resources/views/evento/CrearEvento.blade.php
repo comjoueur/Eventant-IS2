@@ -20,15 +20,15 @@
 <div class="form-group">
   <label for="recinto">Recinto</label>
     <select class="form-control" id="recinto" name="recinto">
-    @foreach($recintos as $recintos)
-      <option value="$recintos[0]">{{$recintos[1]}}</option>
+    @foreach($recintos as $data)
+      <option value={{$data->id_amb}}>"{{$data->nombre}}"</option>
     @endforeach
     </select>
-    <small id="emailHelp" class="form-text text-muted">¿No encuentras el recinto adecuado para tu evento?, Créalo haciendo <a href="#">click aquí</a></small>
+    <small id="emailHelp" class="form-text text-muted">¿No encuentras el recinto adecuado para tu evento?, Créalo haciendo <a href="gestionarRecinto">click aquí</a></small>
   </div>
   <div class="form-group">
     <label for="evento">Nombre</label>
-    <input type="text" class="form-control" id="evento" name="evento" placeholder="Nombre del Evento">
+    <input type="text" class="form-control" id="evento" name="evento">
   </div>
   <div class="form-group">
     <label for="fechainicio">Fecha de Inicio</label>
@@ -41,14 +41,6 @@
   <div class="form-group">
     <label for="descripcion">Descripción</label>
     <input type="text" class="form-control" id="descripcion" name="descripcion">
-  </div>
-  <div class="form-group">
-  <label for="encargado">Encargado</label>
-    <select class="form-control" id="encargado" name="encargado">
-    @foreach($encargados as $encargados)
-      <option value="$encargados[0]">{{$encargados[1]}}</option>
-    @endforeach
-    </select>
   </div>
   <br>
   <div class="row">

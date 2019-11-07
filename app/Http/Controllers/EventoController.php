@@ -4,42 +4,62 @@ namespace App\Http\Controllers;
 
 use App\Evento;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EventoController extends Controller
 {
 
     public function GestionarEvento()
     {
-        $eventsA=[[1,'FIA 2019','22/10/19','31/10/19','Evento que agrupa las ferias mas importantes'],[2,'CONEISC','20/10/19','29/10/19','Evento de Tecnología','45']];
-        $eventsP=[[1,'CISC','20/10/18','29/10/18','Evento de tecnología'],[2,'FIA 2018','22/10/18','29/10/18','Evento que agrupa las ferias más importantes','32']];
+        $eventsA=DB::table('eventos')->select('id_evento','nombre','fechainicio','fechaFin','descripcion','estado','Ambientesid_amb')->where('estado','=','1')->get();
+        $eventsP=DB::table('eventos')->select('id_evento','nombre','fechainicio','fechaFin','descripcion','estado','Ambientesid_amb')->where('estado','=','0')->get();
+        for($i=0;$i<sizeof($eventsA);$i=$i+1){
+            $eventsA[$i]->count=$i+1;
+        }
+        for($i=0;$i<sizeof($eventsP);$i=$i+1){
+            $eventsP[$i]->count=$i+1;
+        }
         return view('evento.GestionarEvento',['eventsA'=>$eventsA,'eventsP'=>$eventsP]);
     }
     public function CrearEventostore(Request $request){
+        $id_evento=DB::table('eventos')->insertGetId(
+            ['id_evento' => NULL, 'nombre' => $request->evento, 'fechainicio'=>$request->fechainicio, 'fechaFin'=>$request->fechafinal, 'descripcion'=>$request->descripcion,'estado'=>1,'Ambientesid_amb'=>$request->recinto]
+        );
+        $request->id_evento = $id_evento;
         return (new PersonalController)->GestionarPersonal($request);
     }
     public function ModificarEventostore(Request $request){
-        $noti="true";
-        $recintos=[[0,'AQPrecinto'],[1,'LimaRecinto']];
-        $encargados=[[0,'Guido Tapia'],[1,'Alonso Valdivia']];
-        return view('evento.ModificarEvento',['noti'=>$noti,'recintos'=>$recintos,'encargados'=>$encargados]);
+        $id_evento=$request->id_evento;
+        print_r($request->id_evento);
+        DB::table('eventos')->where('id_evento','=',$id_evento)->update(
+            ['nombre' => $request->evento, 'fechainicio'=>$request->fechainicio, 'fechaFin'=>$request->fechafinal, 'descripcion'=>$request->descripcion,'Ambientesid_amb'=>$request->recinto]
+        );
+        $recintos=DB::table('ambientes')->where('Ambientesid_amb','=',NULL)->select('id_amb','nombre')->get();
+        $data=DB::table('eventos')->where('id_evento','=',$id_evento)->select('id_evento','nombre','fechainicio','fechaFin','descripcion','Ambientesid_amb')->get();
+        return view('evento.ModificarEvento',['recintos'=>$recintos,'data'=>$data[0]]);
     }
     public function AdaptarEventostore(Request $request){
+        $id_recin=DB::table('eventos')->insertGetId(
+            ['id_evento' => NULL, 'nombre' => $request->evento, 'fechainicio'=>$request->fechainicio, 'fechaFin'=>$request->fechafinal, 'descripcion'=>$request->descripcion,'estado'=>1,'Ambientesid_amb'=>$request->recinto]
+        );
+        $request->id_recin = $id_recin;
         return (new PersonalController)->GestionarPersonal($request);
     }
     public function CrearEvento(Request $request){
-        $recintos=[[0,'AQPrecinto'],[1,'LimaRecinto']];
-        $encargados=[[0,'Guido Tapia'],[1,'Alonso Valdivia']];
-        return view('evento.CrearEvento',['noti'=>'false','recintos'=>$recintos,'encargados'=>$encargados]);
+        $recintos=DB::table('ambientes')->where('Ambientesid_amb','=',NULL)->select('id_amb','nombre')->get();
+        return view('evento.CrearEvento',['recintos'=>$recintos]);
     }
     public function AdaptarEvento(Request $request){
-        $recintos=[[0,'AQPrecinto'],[1,'LimaRecinto']];
-        $encargados=[[0,'Guido Tapia'],[1,'Alonso Valdivia']];
-        return view('evento.AdaptarEvento',['noti'=>'false','recintos'=>$recintos,'encargados'=>$encargados]);
+        $id_evento=$request->evento;
+        $recintos=DB::table('ambientes')->where('Ambientesid_amb','=',NULL)->select('id_amb','nombre')->get();
+        $data=DB::table('eventos')->where('id_evento','=',$id_evento)->select('id_evento','nombre','fechainicio','fechaFin','descripcion','Ambientesid_amb')->get();
+        return view('evento.AdaptarEvento',['recintos'=>$recintos,'data'=>$data[0]]);
     }
     public function ModificarEvento(Request $request){
-        $recintos=[[0,'AQPrecinto'],[1,'LimaRecinto']];
-        $encargados=[[0,'Guido Tapia'],[1,'Alonso Valdivia']];
-        return view('evento.ModificarEvento',['noti'=>'false','recintos'=>$recintos,'encargados'=>$encargados]);
+        $id_evento=$request->evento;
+        $recintos=DB::table('ambientes')->where('Ambientesid_amb','=',NULL)->select('id_amb','nombre')->get();
+        $data=DB::table('eventos')->where('id_evento','=',$id_evento)->select('id_evento','nombre','fechainicio','fechaFin','descripcion','Ambientesid_amb')->get();
+        return view('evento.ModificarEvento',['recintos'=>$recintos,'data'=>$data[0]]);
     }
     public function OpcionEvento(Request $request){
         if($request->botonopcion=='crear'){
